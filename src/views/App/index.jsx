@@ -14,6 +14,7 @@ import Places from '../Places/container'
 import CheckIn from '../CheckIn/container'
 
 const styles = {
+  "@import": "react-circular-progressbar/dist/styles.css",
   "@import": "https://fonts.googleapis.com/css?family=Source+Sans+Pro",
   "@global html, body": {
     fontFamily: "Source Sans Pro",
@@ -38,7 +39,7 @@ const styles = {
     width: "100%",
     height: "calc(100vh - 160px)",
     overflow: "auto",
-    "overflow-x": "hidden"
+    overflowX: "hidden"
   }
 };
 

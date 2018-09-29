@@ -21,7 +21,7 @@ const MapWithAMarker = withScriptjs(withGoogleMap(props =>
 ));
 
 const txtAlign = {
-    "text-align": "left"
+    textAlign: "left"
 }
 
 class Places extends React.Component {

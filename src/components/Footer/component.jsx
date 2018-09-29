@@ -9,8 +9,8 @@ const style = {
 const divider = {
     display: 'block',
     width:' 100%',
-    "padding-top": "12px",
-    "padding-bottom": "12px"
+    paddingTop: "12px",
+    paddingBottom: "12px"
 }
 
 const marginless = {
