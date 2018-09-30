@@ -24,16 +24,16 @@ class CheckIn extends React.Component {
     handleChackIn = () => {
         this.props.nos.getAddress()
         .then((address) => {
-            this.props.nos.testInvoke({ scriptHash: Constants.scriptHash, operation: "make_check_in", args: ["GeoLab", address] })
+            this.props.nos.invoke({ scriptHash: Constants.scriptHash, operation: "make_check_in", args: ["Tbilisi, GeoLab", address] })
             .then((script) => {
                 console.log(script)
-                if (script.stack[0].value == 1) {
+                // if (script.stack[0].value == 1) {
 
-                }
+                // }
                 this.setState({modalLog: true})
             })
             .catch((err) => {
-                console.log(`Error: ${err.message}`)
+                console.log(`Error2: ${err}`)
             })
         })
         .catch((err) => {
@@ -74,7 +74,7 @@ class CheckIn extends React.Component {
                                 <Card.Content header='Check in at' />
                                 <Card.Content>
                                     <Header color="violet" as="h1">"GeoLab"</Header>
-                                    <Header as="h1">And Get 1000 GNEO</Header>
+                                    <Header as="h1">And Get 100 GNEO</Header>
                                 </Card.Content>
                                 <Card.Content>
                                     <Button color="green" onClick={() => this.handleChackIn()}>

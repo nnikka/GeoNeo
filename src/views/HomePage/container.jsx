@@ -22,6 +22,7 @@ class HomePage extends React.Component {
             this.setState({address: address})
             this.props.nos.testInvoke({ scriptHash: Constants.scriptHash, operation: "balanceOf", args: [address] })
             .then(resp => {
+                console.log(resp)
                 const qnt = parseInt("0x"+resp.stack[0].value)
                 if (qnt.toString() !== 'NaN' && qnt.toString()) {
                     this.setState({quantity: qnt})
