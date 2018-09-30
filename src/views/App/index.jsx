@@ -7,11 +7,12 @@ import NavBar from "./../../components/NavBar/component"
 import Footer from "./../../components/Footer/component"
 
 import Header from "./../../components/Header";
-// import NOSActions from "./../../components/NOSActions";
+import NOSActions from "./../../components/NOSActions";
  
 import HomePage from '../HomePage/container'
 import Places from '../Places/container'
 import CheckIn from '../CheckIn/container'
+import Withdraw from '../Withdraw/container'
 
 const styles = {
   "@import": "react-circular-progressbar/dist/styles.css",
@@ -50,13 +51,14 @@ const App = ({ classes }) => (
       To get started, edit <code>src/views/App/index.js</code> and save to reload.
     </p>
     <p className={classes.intro}>Or test out the following demo functions!</p>
-    <hr className={classes.lineBreak} />
-    <NOSActions /> */}
+    <hr className={classes.lineBreak} /> */}
+    {/* <NOSActions /> */}
     <NavBar />
     <div style={styles.bodyCont}>
       <Route path="/" exact component={HomePage} />
       <Route path="/places" exact component={Places} />
       <Route path="/check_in" exact component={CheckIn} />
+      <Route path="/withdraw" exact component={Withdraw} />
     </div>
     <Footer />
   </div>

@@ -13,6 +13,13 @@ const styles = {
 class NOSActions extends React.Component {
   handleAlert = async func => alert(await func);
 
+  handleGetCount = async () => {
+    console.log("movida")
+    this.props.nos.testInvoke({ scriptHash: "270f4a3a9616dd8a0d7ddb2138a98aae25a2b065", 
+    operation: "check_in_counter", args: ["tbilisifff"] }).then((script) => console.log(`Test invoke script: ${JSON.stringify(script)} `))
+    .catch((err) => alert(`Error: ${err.message}`))
+  }
+
   // handleGetAddress = async () => alert(await this.props.nos.getAddress());
 
   handleClaimGas = () =>
@@ -29,13 +36,13 @@ class NOSActions extends React.Component {
     const rpx = "ecc6b20d3ccac1ee9ef109af5a7cdb85706b1df9";
 
     // Add your smart contract's scriptHash here
-    const scriptHash = "";
+    const scriptHash = "270f4a3a9616dd8a0d7ddb2138a98aae25a2b065";
 
     // The operation of your smart contract you want to (test)invoke
-    const operation = "";
+    const operation = "check_in_counter";
 
     // The necessary arguments for you (test)invoke
-    const args = [];
+    const args = ["tbilisifff"];
 
     // The storagekey you want to query
     const key = "";
@@ -80,7 +87,7 @@ class NOSActions extends React.Component {
           Send GAS to...
         </button>
 
-        <button className={classes.button} onClick={() => this.handleAlert(nos.testInvoke(invoke))}>
+        <button className={classes.button} onClick={() => this.handleGetCount()}>
           TestInvoke
         </button>
         {/*

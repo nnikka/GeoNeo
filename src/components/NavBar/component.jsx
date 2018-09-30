@@ -27,6 +27,10 @@ class NavBar extends React.Component {
                     <Icon circular inverted color='green' name='map'></Icon>
                     Places
                 </Menu.Item>
+                <Menu.Item onClick={() => this.redirect("withdraw")} name='Withdraw' active={this.activeItem === 'Withdraw'}>
+                    <Icon circular inverted color='green' name='chain'></Icon>
+                    Withdraw
+                </Menu.Item>
             </Menu>
         )
     }

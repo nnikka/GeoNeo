@@ -6,16 +6,42 @@ import {
     GoogleMap,
     Marker,
   } from "react-google-maps";
-import { Grid, List, Header, Card, Button } from 'semantic-ui-react'
+import { Grid, List, Header, Card, Button, Modal, Icon } from 'semantic-ui-react'
+import PropTypes from "prop-types";
+import { injectNOS, nosProps } from "@nosplatform/api-functions/lib/react";
+import Constants from './../../constants.json'
 
 class CheckIn extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             currentLang: 41.717578,
-            currentLong: 44.7850189
+            currentLong: 44.7850189,
+            modalLog: false,
         }
     }
+
+    handleChackIn = () => {
+        this.props.nos.getAddress()
+        .then((address) => {
+            this.props.nos.testInvoke({ scriptHash: Constants.scriptHash, operation: "make_check_in", args: ["GeoLab", address] })
+            .then((script) => {
+                console.log(script)
+                if (script.stack[0].value == 1) {
+
+                }
+                this.setState({modalLog: true})
+            })
+            .catch((err) => {
+                console.log(`Error: ${err.message}`)
+            })
+        })
+        .catch((err) => {
+            alert(err.message)
+        });
+    }
+
+    handleClose = () => this.setState({modalLog: false})
 
     render() {
         const MapWithAMarker = withScriptjs(withGoogleMap(props =>
@@ -51,7 +77,7 @@ class CheckIn extends React.Component {
                                     <Header as="h1">And Get 1000 GNEO</Header>
                                 </Card.Content>
                                 <Card.Content>
-                                    <Button color="green">
+                                    <Button color="green" onClick={() => this.handleChackIn()}>
                                         Check In
                                     </Button>
                                 </Card.Content>
@@ -59,9 +85,23 @@ class CheckIn extends React.Component {
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
+
+                <Modal open={this.state.modalLog}>
+                    <Header icon='check' content='You checked in successfully' />
+                    <Modal.Actions>
+                        <Button color='green' onClick={this.handleClose} inverted>
+                            <Icon name='checkmark' /> Got it
+                        </Button>
+                    </Modal.Actions>
+                </Modal>
+
             </div>
         )
     }
 }
 
-export default withRouter(CheckIn)
+CheckIn.propTypes = {
+    nos: nosProps.isRequired
+};
+  
+export default injectNOS(withRouter(CheckIn));
