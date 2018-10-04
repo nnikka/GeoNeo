@@ -24,7 +24,7 @@ class CheckIn extends React.Component {
     handleChackIn = () => {
         this.props.nos.getAddress()
         .then((address) => {
-            this.props.nos.testInvoke({ scriptHash: Constants.scriptHash, operation: "make_check_in", args: ["GeoLab", address] })
+            this.props.nos.invoke({ scriptHash: Constants.scriptHash, operation: "make_check_in", args: ["Tbilisi, GeoLab", address] })
             .then((script) => {
                 console.log(script)
                 if (script.stack[0].value == 1) {
